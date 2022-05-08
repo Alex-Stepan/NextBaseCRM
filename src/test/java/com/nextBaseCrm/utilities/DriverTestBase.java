@@ -26,7 +26,7 @@ public class DriverTestBase {
         driver = Driver.getDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.get("https://www.northropgrumman.com/");
+        driver.get("https://google.com/");
     }
 
     //3.

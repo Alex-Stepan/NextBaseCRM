@@ -3,10 +3,10 @@ Feature: From  Authorization Page   LOGIN  to  NextBaseCRM Home page
     Given User is on the Authorization Page
 
   Scenario: User navigates from Authorization Page  to  NextBaseCRM Home page
-    When User enter login
-      | helpdesk29@cybertekschool.com  |
-      | marketing29@cybertekschool.com |
-      | hr29@cybertekschool.com        |
-    And User enter password
-      |UserUser|
+
+    When User enter credentials for Login
+          | helpdesk29@cybertekschool.com  |
+          | marketing29@cybertekschool.com |
+          | hr29@cybertekschool.com        |
+
     Then User should navigate to the NextBaseCRM Home page
