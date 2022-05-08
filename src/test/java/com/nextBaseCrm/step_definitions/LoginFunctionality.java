@@ -1,5 +1,6 @@
 package com.nextBaseCrm.step_definitions;
 
+import com.nextBaseCrm.pages.AuthorizationPage;
 import com.nextBaseCrm.utilities.DriverTestBase;
 import com.nextBaseCrm.utilities.DriverUtilities;
 import io.cucumber.java.en.Given;
@@ -14,62 +15,54 @@ import java.util.ArrayList;
 public class LoginFunctionality extends DriverTestBase {
 
 
-        @Given("User is on default page")
-        public void user_is_on_default_page() {
-            setupWebDriver();
-            driver.get("https://login2.nextbasecrm.com/auth/?backurl=%2Fworkgroups%2F");
-        }
+            @Given("User is on default page")
+            public void user_is_on_default_page() {
+
+                //1.
+                setupWebDriver();
+                driver.get("https://login2.nextbasecrm.com/auth/?backurl=%2Fworkgroups%2F");
+            }
 
 
     @When("User verifies login functionality to Home page")
     public void user_verifies_login_functionalities() {
-        Actions actions = new Actions(driver);
 
+            //2.
+        Actions actions = new Actions(driver);
+            //3.
         ArrayList<String> loginList = new ArrayList<>();
             loginList.add("helpdesk29@cybertekschool.com");
             loginList.add("marketing29@cybertekschool.com");
             loginList.add("hr29@cybertekschool.com");
+            //4.
+        AuthorizationPage authorizationPage = new AuthorizationPage();
 
-        ArrayList<String> listTitle = new ArrayList<>();
-
+            //5.
         for (int i = 0; i < loginList.size(); i++) {
-                //4. Locate LoginBox
-            WebElement LoginInput = driver.findElement(By.xpath("//*[@id=\"login-popup\"]/form/div[1]/div[1]/input"));
-                //5. Navigate to LoginBox
-            actions.click(LoginInput).doubleClick().sendKeys(Keys.DELETE).pause(2000).perform();
-                //6. Input credentials and click()
+                //5.1. Navigate to LoginBox & input username from the List:
+            actions.click(authorizationPage.LoginBox).doubleClick().sendKeys(Keys.DELETE).pause(2000).perform();
             actions.sendKeys(loginList.get(i)).pause(2000).perform();
-                //8. Locate PasswordBox
-            WebElement PasswordBox = driver.findElement(By.xpath("//*[@id=\"login-popup\"]/form/div[1]/div[2]/input"));
-                //9. Navigate to PasswordBox
-            actions.click(PasswordBox).doubleClick().sendKeys(Keys.DELETE).pause(2000).perform();
-                //10. Input credentials and click()
+
+                //5.2. Navigate to PasswordBox & input password:
+            actions.click(authorizationPage.PasswordBox).doubleClick().sendKeys(Keys.DELETE).pause(2000).perform();
             actions.sendKeys("UserUser").pause(2000).perform();
-                //12. Locate LoginButton
-            WebElement LoginButton = driver.findElement(By.xpath("//*[@id=\"login-popup\"]/form/div[2]/input"));
-                //13. Click() Login Button
-            actions.moveToElement(LoginButton).pause(2000).click().perform();
+
+                //5.3. Navigate to Login Button & click()
+            actions.moveToElement(authorizationPage.LoginBttn).pause(2000).click().perform();
                 DriverUtilities.waitFor(5);
 
-
-                //2. Logout process
-            actions.moveToElement(driver.findElement(By.id("user-block"))).click().perform();
+                //5.4. Logout process
+            actions.moveToElement(authorizationPage.FunctionallityList).click().perform();
                 DriverUtilities.waitFor(5);
-
-            actions.moveToElement(driver.findElement(By.xpath("//*[@id=\"popup-window-content-menu-popup-user-menu\"]/div/div/a[3]/span[2]"))).click().perform();
+            actions.moveToElement(authorizationPage.LogOutBttn).click().perform();
                 DriverUtilities.waitFor(5);
         }
     }
-//    @When("gets title of the page")
-//    public void navigates_to_home_page() {
-//
-//        driver.getTitle();
-//    }
 
 
     @Then("User close the browser")
     public void user_close_the_browser() {
-        //14. close Chrome
+        //6. close Chrome
         driver.quit();
     }
 
