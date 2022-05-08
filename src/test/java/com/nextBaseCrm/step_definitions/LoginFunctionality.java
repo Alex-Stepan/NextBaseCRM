@@ -25,7 +25,7 @@ public class LoginFunctionality extends DriverTestBase {
 
 
     @When("User verifies login functionality to Home page")
-    public void user_verifies_login_functionalities() {
+    public void user_verifies_login_functionalities() throws InterruptedException {
 
             //3.
         Actions actions = new Actions(driver);
@@ -40,22 +40,28 @@ public class LoginFunctionality extends DriverTestBase {
             //6.
         for (int i = 0; i < loginList.size(); i++) {
                 //6.1. Navigate to LoginBox & input username from the List:
-            actions.click(authorizationPage.LoginBox).doubleClick().sendKeys(Keys.DELETE).pause(2000).perform();
-            actions.sendKeys(loginList.get(i)).pause(2000).perform();
+            actions.click(authorizationPage.LoginBox).doubleClick().sendKeys(Keys.DELETE).perform();
+                Thread.sleep(2000); //2000 = 2 sec
+            actions.sendKeys(loginList.get(i)).perform();
+                Thread.sleep(2000); //2000 = 2 sec
 
                 //6.2. Navigate to PasswordBox & input password:
-            actions.click(authorizationPage.PasswordBox).doubleClick().sendKeys(Keys.DELETE).pause(2000).perform();
-            actions.sendKeys("UserUser").pause(2000).perform();
+            actions.click(authorizationPage.PasswordBox).doubleClick().sendKeys(Keys.DELETE).perform();
+                Thread.sleep(2000); //2000 = 2 sec
+            actions.sendKeys("UserUser").perform();
+                Thread.sleep(2000); //2000 = 2 sec
 
-                //6.3. Navigate to Login Button & click()
-            actions.moveToElement(authorizationPage.LoginBttn).pause(2000).click().perform();
-                DriverUtilities.waitFor(5);
+            //6.3. Navigate to Login Button & click()
+            actions.moveToElement(authorizationPage.LoginBttn).click().perform();
+            Thread.sleep(2000); //2000 = 2 sec
+//            DriverUtilities.waitFor(3);
 
                 //6.4. Logout process
             actions.moveToElement(authorizationPage.FunctionallityList).click().perform();
-                DriverUtilities.waitFor(5);
+                Thread.sleep(2000); //2000 = 2 sec
             actions.moveToElement(authorizationPage.LogOutBttn).click().perform();
-                DriverUtilities.waitFor(5);
+                Thread.sleep(2000); //2000 = 2 sec
+
         }
     }
 
