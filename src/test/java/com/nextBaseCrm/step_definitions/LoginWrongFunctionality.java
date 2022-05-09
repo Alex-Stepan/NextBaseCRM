@@ -4,7 +4,6 @@ import com.nextBaseCrm.pages.AuthorizationPage;
 import com.nextBaseCrm.utilities.DriverTestBase;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 
@@ -42,13 +41,8 @@ public class LoginWrongFunctionality extends DriverTestBase{
             Thread.sleep(2000); //2000 = 2 sec
 
         //8.
-        boolean errorTextVisible ;
-        Assertions.assertTrue(authorizationPage.ErrorText.isDisplayed());
-
-
         System.out.println( "is \"Incorrect login or password message\" message displayed? " +
                 authorizationPage.ErrorText.isDisplayed() );
-
 
     }
 
