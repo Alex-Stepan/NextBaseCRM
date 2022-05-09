@@ -42,5 +42,9 @@ public class AuthorizationPage {
     @FindBy(xpath = ("//*[@id=\"login-popup\"]/div[2]" ))
     public WebElement ErrorText;
 
+        // Forgot Your Password Button
+    @FindBy(xpath = ("//*[@id=\"login-popup\"]/form/div[2]/a"))
+    public WebElement ForgotYourPasswordButton;
+
 
 }
