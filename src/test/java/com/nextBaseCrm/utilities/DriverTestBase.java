@@ -22,11 +22,12 @@ public class DriverTestBase {
 
     //2.
     @Before
-    public void setupWebDriver() {
+    public void setupWebDriver() throws InterruptedException {
         driver = Driver.getDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.get("https://google.com/");
+            Thread.sleep(2000);
     }
 
     //3.

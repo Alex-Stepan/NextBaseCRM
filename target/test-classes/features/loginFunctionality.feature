@@ -4,7 +4,7 @@ Feature: From default page Login to Home Page
     Given User is on default page
 
 
-  Scenario: User navigates to Home Page
+  Scenario: Login Functionality to Home Page
 
     When User verifies login functionality to Home page
 
